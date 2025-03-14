@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application() {
+    mainClass="de.performance.tests.Runner"
+}
+
+apply plugin: 'java'
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+    // Test Framework
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
+
+    // Cucumber
+    implementation 'io.cucumber:cucumber-java:7.6.0'
+    implementation 'io.cucumber:cucumber-junit:7.8.0'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
+
+    // lombok
+    implementation 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    // For dynamic expressions in test data
+    implementation 'org.codehaus.groovy:groovy-all:3.0.12'
+
+    // Jackson for Json-Processing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.9'
+
+    // Jackson from TestCaseFetcher Proj
+    implementation 'org.apache.cxf:cxf-rt-rs-client:3.5.4'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.14.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}

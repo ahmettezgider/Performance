@@ -1,0 +1,18 @@
+application:
+    name: OrangeHRM
+    url: https://opensource-demo.orangehrmlive.com/
+    username: Admin
+    password: admin123
+
+tests:
+  dryrun: false
+  features: src/main/resources/Run.feature
+
+browser:
+  browser: chrome
+  userprofile:
+
+testvariables:
+  name: name
+  number: 1
+  city: Newyork
