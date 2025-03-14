@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +44,7 @@ public class TestConfiguration {
     public static class Browser {
         private String browser;
         private String userprofile;
+        private ArrayList<String> arguments;
     }
 
 }

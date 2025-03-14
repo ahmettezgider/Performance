@@ -11,6 +11,10 @@ tests:
 browser:
   browser: chrome
   userprofile:
+  arguments:
+    - "--headless"
+    - "--browser-test"
+    - "disable-infobars"
 
 testvariables:
   name: name

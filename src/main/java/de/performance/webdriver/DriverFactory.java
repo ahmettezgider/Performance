@@ -21,8 +21,9 @@ public class DriverFactory {
             options.addArguments(MessageFormat.format("--user-data-dir={0}", userProfileDir));
         }
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        options.addArguments("--browser-test");
-        options.addArguments("disable-infobars");
+        for (String argument : config.getBrowser().getArguments()) {
+            options.addArguments(argument);
+        }
         WebDriver driver = new ChromeDriver(options);
         return driver;
     }
@@ -33,6 +34,9 @@ public class DriverFactory {
             String userProfileDir = config.getBrowser().getUserprofile();
             options.addArguments(MessageFormat.format("--user-data-dir={0}", userProfileDir));
         }
+        for (String argument : config.getBrowser().getArguments()) {
+            options.addArguments(argument);
+        }
         WebDriver driver = new EdgeDriver(options);
         return driver;
     }
@@ -42,6 +46,9 @@ public class DriverFactory {
         if(config.getBrowser().getUserprofile() != null) {
             String userProfileDir = config.getBrowser().getUserprofile();
             options.addArguments(MessageFormat.format("--user-data-dir={0}", userProfileDir));
+        }
+        for (String argument : config.getBrowser().getArguments()) {
+            options.addArguments(argument);
         }
         WebDriver driver = new FirefoxDriver(options);
         return driver;
