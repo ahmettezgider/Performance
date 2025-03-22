@@ -1,5 +1,6 @@
 package de.performance.controls;
 
+import de.performance.util.TestLogger;
 import de.performance.webdriver.DriverProvider;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -10,8 +11,6 @@ import java.time.Duration;
 import java.util.logging.Logger;
 
 public class WebElementHelper {
-
-    private static final Logger log = Logger.getLogger(WebElementHelper.class.getName());
 
     private final static Duration DEFAULT_WAIT_TIME = Duration.ofSeconds(60);
 
@@ -65,11 +64,11 @@ public class WebElementHelper {
                     element2.click();
                     return true;
                 } catch (ElementClickInterceptedException ice) {
-                    log.info("intercepted");
-                    log.info(ice.getMessage());
+                    TestLogger.logWrite("intercepted");
+                    TestLogger.logWrite(ice.getMessage());
                     return false;
                 } catch (StaleElementReferenceException stale) {
-                    log.info("stale");
+                    TestLogger.logWrite("stale");
                     return false;
                 }
             });

@@ -2,6 +2,7 @@ package de.performance.controls;
 
 import de.performance.tdexpressions.ExpressionEvaluator;
 import de.performance.tdexpressions.InvalidExpressionException;
+import de.performance.util.TestLogger;
 import de.performance.webdriver.DriverProvider;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -15,7 +16,6 @@ import java.time.Duration;
 import java.util.logging.Logger;
 
 public class TextfieldControl extends WebControl {
-    private final static Logger log = Logger.getLogger(TextfieldControl.class.getName());
     private final static String TEXT_XPATH = "//div[contains(@class, 'oxd-input-group') and normalize-space(.)=\"{0}\"]//input";
 
     public TextfieldControl(By locator) {
@@ -40,9 +40,9 @@ public class TextfieldControl extends WebControl {
 
 
     public String getLabelText() {
-        log.info(MessageFormat.format("Get value of field \"{0}\"", label));
+        TestLogger.logWrite(MessageFormat.format("Get value of field \"{0}\"", label));
         WebElement rootElement = getRootElement();
-        log.info("... done");
+        TestLogger.logWrite("... done");
         return rootElement.getText();
     }
 
@@ -59,7 +59,7 @@ public class TextfieldControl extends WebControl {
     public void setText(String text, boolean clear) throws InvalidExpressionException {
         WebDriverWait wait = new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(30), Duration.ofMillis(100));
         text = ExpressionEvaluator.evaluate(text);
-        log.info(MessageFormat.format("Set field \"{0}\" to \"{1}\" (Löschen: {2})", label, text, "" + clear));
+        TestLogger.logWrite(MessageFormat.format("Set field \"{0}\" to \"{1}\" (Löschen: {2})", label, text, "" + clear));
         WebElement rootElement = getRootElement();
         if (clear) {
             wait.until(driver->{
@@ -76,14 +76,14 @@ public class TextfieldControl extends WebControl {
         }
         WebElementHelper.click(this.controlRootLocator);
         rootElement.sendKeys(text);
-        log.info("... done");
+        TestLogger.logWrite("... done");
     }
 
 
     public String getText() {
-        log.info(MessageFormat.format("Get value of field \"{0}\"", label));
+        TestLogger.logWrite(MessageFormat.format("Get value of field \"{0}\"", label));
         WebElement rootElement = getRootElement();
-        log.info("... done");
+        TestLogger.logWrite("... done");
         String value = rootElement.getAttribute("value");
         if (value == null)
             value = rootElement.getAttribute("data-value");

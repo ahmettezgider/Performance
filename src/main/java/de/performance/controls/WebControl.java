@@ -1,9 +1,12 @@
 package de.performance.controls;
 
+import de.performance.util.Utils;
 import de.performance.webdriver.DriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.logging.Logger;
 
 abstract class WebControl {
 

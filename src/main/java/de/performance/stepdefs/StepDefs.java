@@ -11,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class StepDefs {
     @Given("start the application")

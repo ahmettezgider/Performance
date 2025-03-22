@@ -3,7 +3,6 @@ package de.performance.util;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-
 public class Utils {
 
     public static String getClipboard() {

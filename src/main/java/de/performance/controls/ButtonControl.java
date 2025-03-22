@@ -2,6 +2,8 @@ package de.performance.controls;
 
 import de.performance.tdexpressions.ExpressionEvaluator;
 import de.performance.tdexpressions.InvalidExpressionException;
+import de.performance.util.TestLogger;
+import de.performance.util.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,11 +14,10 @@ import java.util.logging.Logger;
 
 public class ButtonControl extends WebControl {
 
-    private static final Logger log = Logger.getLogger(ButtonControl.class.getName());
-
     private final static String BUTTON_XPATH = "//button[normalize-space(.)=\"{0}\"]";
     private final static String LINK_XPATH = "//a[normalize-space(.)=\"{0}\"]";
 
+    private final String CLASS = this.getClass().getName();
 
     public ButtonControl(By locator) {
         super(locator);
@@ -34,15 +35,16 @@ public class ButtonControl extends WebControl {
     }
 
     public void click() {
-        log.info(MessageFormat.format("Click \"{0}\"", label));
+        TestLogger.logWrite(CLASS + ", Click Button");
         WebElementHelper.click(controlRootLocator);
-        log.info("... done");
+        TestLogger.logWrite(CLASS + ", Click Button done");
     }
 
     public boolean isVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(this.controlRootLocator));
+            TestLogger.logWrite(CLASS + ", Button is visible");
             return true;
         } catch(Exception e) {
             return false;

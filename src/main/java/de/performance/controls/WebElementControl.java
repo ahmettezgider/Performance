@@ -2,12 +2,15 @@ package de.performance.controls;
 
 import de.performance.tdexpressions.ExpressionEvaluator;
 import de.performance.tdexpressions.InvalidExpressionException;
+import de.performance.util.TestLogger;
+import de.performance.util.Utils;
 import de.performance.webdriver.DriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.MessageFormat;
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class WebElementControl extends WebControl {
 
@@ -30,11 +33,14 @@ public class WebElementControl extends WebControl {
     }
 
     public void click() {
+        TestLogger.logWrite("Click Element");
         WebElementHelper.click(controlRootLocator);
+        TestLogger.logWrite("Click Element done");
     }
 
     public void waitForVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        TestLogger.logWrite("Wait for Element to be visible");
         wait.until(driver -> {
            try{
                return DriverProvider.getDriver().findElement(controlRootLocator).isDisplayed();
@@ -42,10 +48,11 @@ public class WebElementControl extends WebControl {
                return false;
            }
         });
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(controlRootLocator));
+        TestLogger.logWrite("Wait for Element to be visible done");
     }
 
     public boolean isVisible() {
+        TestLogger.logWrite("Return is element visible");
         return driver.findElement(controlRootLocator).isDisplayed();
     }
 }
